@@ -37,8 +37,8 @@ Route::get('/bandanabone', function () {
     return view('bandanabone');
 });
 
-Route::get('/boruabone', function () {
-    return view('boruabone');
+Route::get('/borubone', function () {
+    return view('borubone');
 });
 
 Route::get('/desenliesarp', function () {

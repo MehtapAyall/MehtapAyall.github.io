@@ -12,7 +12,7 @@ class Verialma extends Controller
 {
     public function listele (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati')->get();
+        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->get();
         
         return view('anasayfa',compact('urunler'));
     }

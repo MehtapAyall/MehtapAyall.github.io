@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('urun_aciklama');
             $table->decimal('urun_fiyati');
             $table->integer('urun_stok_miktari');
-            $table->binary('urun_resmi');
+            $table->string('urun_resmi');
             $table->timestamps();
         });
     }

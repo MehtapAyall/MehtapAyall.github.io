@@ -64,7 +64,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/topuzbonesi">Topuz Bonesi</a>
                             <a class="dropdown-item" href="/tesetturbone">Tesettür Bone</a>
-                            <a class="dropdown-item" href="/boruabone">Boru Bone</a>
+                            <a class="dropdown-item" href="/borubone">Boru Bone</a>
                             <a class="dropdown-item" href="/bandanabone">Bandana Bone</a>
                         </li>
 
