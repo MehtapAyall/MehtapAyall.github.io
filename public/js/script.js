@@ -57,6 +57,7 @@ class UI{
 
     removeCard(){
         let btnRemove = document.getElementsByClassName("btn-delete");
+        let self = this; 
         for(let i = 0; i < btnRemove.length; i++ ){
             btnRemove[i].addEventListener("click",function(){
                 this.closest(".list-item").remove();
