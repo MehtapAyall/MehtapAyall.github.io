@@ -8,21 +8,23 @@
 </head>
 <body>
     <div>
-        @include('menu');
+        @include('menu')
     </div>
     
-    <div class="container d-flex">  
+    <div class="row" id="product-dom p-5" style="margin: 20px;">
         @if(isset($urunler))
             @foreach($urunler as $urun)
-                <div class="card mx-2" style="width: 18rem;">
-                    <img src="resimler/pamuk1.jpg" class="card-img-top" alt="resim">
+                <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="urunRes/{{ $urun->urun_resmi }}.jpg" class="card-img-top" alt="resim">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $urun -> urun_adi}}</h5>
-                        <div class="d-flex justify-content-between">
+                    <h5 class="card-title">{{ $urun->urun_adi }}</h5>
+                    <div class="d-flex justify-content-between">
                         <a href="#" class="btn btn-info btn-danger">Sepete Ekle</a>
-                        <span class="price badge rounded-pill bg-success text-dark d-flex align-items-center " style="width: 3.5rem; height: 3.5rem;"> {{ $urun -> urun_fiyati}} ₺ </span>
-                        </div>
+                        <span class="price badge rounded-pill bg-success text-dark d-flex align-items-center">{{ $urun->urun_fiyati }} ₺</span>
                     </div>
+                    </div>
+                </div>
                 </div>
             @endforeach
         @endif

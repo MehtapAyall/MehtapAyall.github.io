@@ -9,6 +9,7 @@ class Shopping{
         this.image=image;
         this.title=title;
         this.price=price;
+        this.quantity=1;
     }
 }
 
@@ -16,7 +17,7 @@ class UI{
     addToCart(shopping){
         const listItem = document.createElement("div");
         listItem.classList = "list-item";
-        
+
         listItem.innerHTML = 
         `
         <div class="row align-item-center text-white-50">
@@ -33,7 +34,7 @@ class UI{
                 <button class="quantity-minus bg" style="border: none;">
                     <i class="fas fa-minus"></i>
                 </button>
-                <span class="quantity">0</span>
+                <span class="quantity">${shopping.quantity}</span>
                 <button class="quantity-plus bg" style="border: none;">
                     <i class="fas fa-plus"></i>
                 </button>
@@ -46,7 +47,7 @@ class UI{
         </div>
         <div class="total d-flex mt-3">
             <div class="total-title">Toplam : </div>
-            <span class="total-value"> 1</span>
+            <span class="total-value">${shopping.price}</span>
         </div>
         <div class="">
             <button class="btn-al btn-outline-danger p-2 rounded-pill" type="button"> Alışverişi Tamamla </button>
@@ -65,7 +66,31 @@ class UI{
             })
         }
     }
-    
+
+    updateQuantity(){
+        let btnMinus = document.getElementsByClassName("quantity-minus");
+        let btnPlus = document.getElementsByClassName("quantity-plus");
+        let quantity = document.getElementsByClassName("quantity");
+        let price = document.getElementsByClassName("price");
+        let total = document.getElementsByClassName("total-value");
+        let self = this;
+        for(let i = 0; i < btnMinus.length; i++ ){
+            btnMinus[i].addEventListener("click",function(){
+                if(quantity[i].textContent > 1){
+                    quantity[i].textContent--;
+                    total[i].textContent = price[i].textContent * quantity[i].textContent;
+                    self.cartCount();
+                }
+            })
+        }
+        for(let i = 0; i < btnPlus.length; i++ ){
+            btnPlus[i].addEventListener("click",function(){
+                quantity[i].textContent++;
+                total[i].textContent = price[i].textContent * quantity[i].textContent;
+                self.cartCount();
+            })
+        }
+    }
 
     cartCount(){
         let cartListItem = cartList.getElementsByClassName("list-item");
@@ -93,6 +118,7 @@ for(let i=0; i<btnEkle.length; i++){
 
         ui.addToCart(shopping);
         ui.removeCard();
+        ui.updateQuantity();
         ui.cartCount();
 
         e.preventDefault();
