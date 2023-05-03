@@ -77,6 +77,10 @@ Route::get('/desenlisal', function () {
     return view('desenlisal');
 });
 
+Route::get('/profil', function () {
+    return view('profil');
+});
+
 Route::get('/',[App\Http\Controllers\Verialma::class,'listele']);
 Route::post('/kisikayit',[App\Http\Controllers\Verialma::class,'kaydet']);
 Route::get('/pamuksal',[App\Http\Controllers\Verialma::class,'listele1']);
@@ -93,3 +97,10 @@ Route::get('/pamukesarp',[App\Http\Controllers\Verialma::class,'listele9']);
 Route::get('/penyesal',[App\Http\Controllers\Verialma::class,'listele10']);
 Route::get('/tesetturbone',[App\Http\Controllers\Verialma::class,'listele11']);
 Route::get('/topuzbonesi',[App\Http\Controllers\Verialma::class,'listele12']);
+Route::get('/profil',[App\Http\Controllers\Verialma::class,'kullaniciBilgi']);
+
+Route::get('/arama',[App\Http\Controllers\Verialma::class,'arama'])->name('arama');
+
+
+
+

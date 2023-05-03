@@ -79,13 +79,16 @@
 
                 <div class="container-fluid justify-content-end">
                     <div class="input-group" style="width: 15rem;">
-                        <div class="form-outline" >
-                            <input type="search" id="form1" class="form-control" placeholder="Ara" style="width: 10rem;"/>
+                        <div class="form-outline">
+                            <form action="{{ route('arama') }}" method="GET">
+                                <input type="search" id="form1" class="form-control" placeholder="Ara" style="width: 10rem;" name="q" value="{{ request('q') }}">
+                            </form>
                         </div>
                         <button type="button" class="btn">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
+
 
                     <!---------------------------------->
                     <div class="shoping-cart position-relative">

@@ -7,9 +7,69 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Builder;
 
 class Verialma extends Controller
 {
+    function kullaniciBilgi()
+    {
+        $kullaniciBilgi = DB::table('Kullanicilar')->where('kullanici_id', '=', session('kullanici_id'))->first();
+        
+        return view('profil', ['kullaniciBilgi' => $kullaniciBilgi]);
+    }
+    
+    public function kaydet(Request $req){
+        $kullanici = new Kullanicilar();
+        $kullanici->adi = $req->input('adi');
+        $kullanici->soyadi = $req->input('soyadi');
+        $kullanici->e_posta = $req->input('e_posta');  
+        $kullanici->telefon = $req->input('telefon'); 
+        $kullanici->sifre = bcrypt($req->sifre);
+        $kullanici->adres = $req->input('adres'); 
+
+        $kullanici->save();
+
+        return view('girisyap');
+    }
+
+
+    function girisKontrol(Request $request) {
+        $validatedData = $request->validate([
+            'e_posta' => 'required',
+            'sifre' => 'required',
+        ]);
+
+        $user = DB::table('Kullanicilar')->where('e_posta', $validatedData['e_posta'])->first();
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'Kullanıcı adı veya şifre yanlış.');
+        }
+
+        if (Hash::check($validatedData['sifre'], $user->sifre)) {
+            session(['e_posta' => $user->e_posta, 'sifre' => $user->sifre, 'adi' => $user->adi, 'soyadi' => $user->soyadi]);
+            return view('anasayfa');
+        }
+        else {
+
+            return redirect()->back()->with('error', 'Kullanıcı adı veya şifre yanlış.');
+        }
+    }
+
+    public function arama(Request $request)
+    {
+        $q = $request->input('q');
+
+        $urunler = Urunler::where('urun_adi', 'LIKE', "%$q%")->orWhere('urun_aciklama', 'LIKE', "%$q%")->get();
+
+        return view('arama', compact('urunler'));
+    }
+
+    public function cikisYap()
+    {
+        session()->forget('e_posta');
+        return redirect('/girisyap');
+    }
+
     public function listele (){
 
         $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->get();
@@ -99,49 +159,6 @@ class Verialma extends Controller
         $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'topuz bone')->get();
         
         return view('topuzbonesi',compact('urunler'));
-    }
-
-    public function kaydet(Request $req){
-        $kullanici = new Kullanicilar();
-        $kullanici->adi = $req->input('adi');
-        $kullanici->soyadi = $req->input('soyadi');
-        $kullanici->e_posta = $req->input('e_posta');  
-        $kullanici->telefon = $req->input('telefon'); 
-        $kullanici->sifre = bcrypt($req->sifre);
-        $kullanici->adres = $req->input('adres'); 
-
-        $kullanici->save();
-
-        return view('girisyap');
-    }
-
-
-    function girisKontrol(Request $request) {
-        $validatedData = $request->validate([
-            'e_posta' => 'required',
-            'sifre' => 'required',
-        ]);
-
-        $user = DB::table('Kullanicilar')->where('e_posta', $validatedData['e_posta'])->first();
-
-        if (!$user) {
-            return redirect()->back()->with('error', 'Kullanıcı adı veya şifre yanlış.');
-        }
-
-        if (Hash::check($validatedData['sifre'], $user->sifre)) {
-            session(['e_posta' => $user->e_posta, 'sifre' => $user->sifre, 'adi' => $user->adi, 'soyadi' => $user->soyadi]);
-            return view('anasayfa');
-        } 
-        else {
-
-            return redirect()->back()->with('error', 'Kullanıcı adı veya şifre yanlış.');
-        }
-    }
-
-    public function cikisYap()
-    {
-        session()->forget('e_posta');
-        return redirect('/girisyap');
     }
     
 }
