@@ -13,7 +13,7 @@ class Verialma extends Controller
 {
     function kullaniciBilgi()
     {
-        $kullaniciBilgi = DB::table('Kullanicilar')->where('kullanici_id', '=', session('kullanici_id'))->first();
+        $kullaniciBilgi = DB::table('Kullanicilar')->where('e_posta', '=', session('e_posta'))->get();
         
         return view('profil', ['kullaniciBilgi' => $kullaniciBilgi]);
     }
@@ -56,19 +56,18 @@ class Verialma extends Controller
     }
 
     function bakiyeGoster(){
-        $bakiyeGoster = Kullanicilar::select('bakiye')->where('kullanici_id', '=', session('kullanici_id'))->first();
+        $bakiyeGoster = Kullanicilar::select('bakiye')->where('e_posta', '=', session('e_posta'))->first();
         
         return view('cuzdan', ['bakiye' => $bakiyeGoster]);
     }
 
     function paraYukle(Request $request){
-        $bak = Kullanicilar::select('bakiye')->where('kullanici_id', '=', session('kullanici_id'))->first();
+        $bakiye = Kullanicilar::where('e_posta', '=', session('e_posta'))->firstOrFail();
         $girilendeger = $request->input('miktar'); 
-
-        $bak['bakiye'] += $girilendeger; 
-
-        Kullanicilar::where('kullanici_id', '=', session('kullanici_id'))->update(['bakiye' => $bak['bakiye']]);
-
+    
+        $bakiye->bakiye += $girilendeger;
+        $bakiye->save();
+    
         return redirect()->back()->with('success', 'Bakiye yükleme işlemi başarılı.');
     }
 
@@ -76,9 +75,9 @@ class Verialma extends Controller
     {
         $q = $request->input('q');
 
-        $urunler = Urunler::where('urun_adi', 'LIKE', "%$q%")->orWhere('urun_aciklama', 'LIKE', "%$q%")->get();
+        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_adi', 'LIKE', "%$q%")->orWhere('urun_aciklama', 'LIKE', "%$q%")->get();
 
-        return view('arama', compact('urunler'));
+        return view('arama',  ['urunler' => $urunler]);
     }
 
     public function cikisYap()

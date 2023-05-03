@@ -11,13 +11,13 @@
         @include('menu')
     </div>
 
-    <div class="container ">
+    <div class="container mt-3">
         <div class="row justify-content-center" id="profile_view">
             <div class="col-md-8">
                 <div class="card">
-                    {{ dd($kullaniciBilgi) }}
+
                     @foreach ($kullaniciBilgi as $bilgi )
-                        
+                      
                     
                     <div class="card-header">Kullanıcı Bilgileri</div>
                     <br>
@@ -27,7 +27,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Ad') }}</label>
     
                             <div class="col-md-6">
-                                <label for="name" class="col-md ">{{ $bilgi->adi }}</label>
+                                <label for="name" class="col-md "> {{ $bilgi->adi }}</label>
 
                             </div>
                         </div>
@@ -54,10 +54,10 @@
                             </div>
                         </div>
 
-                        @endforeach
+                    @endforeach
                         <div class="form-group row mb-0">
                             <div class="col-md-6">
-                                <a href="{{ route('home') }}" class="btn btn-secondary">{{ __('Geri') }}</a>
+                                <a href="" class="btn btn-secondary">{{ __('Geri') }}</a>
                             </div>
                            
                             <div class="col-md-6">
