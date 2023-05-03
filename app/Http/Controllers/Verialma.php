@@ -55,6 +55,23 @@ class Verialma extends Controller
         }
     }
 
+    function bakiyeGoster(){
+        $bakiyeGoster = Kullanicilar::select('bakiye')->where('kullanici_id', '=', session('kullanici_id'))->first();
+        
+        return view('cuzdan', ['bakiye' => $bakiyeGoster]);
+    }
+
+    function paraYukle(Request $request){
+        $bak = Kullanicilar::select('bakiye')->where('kullanici_id', '=', session('kullanici_id'))->first();
+        $girilendeger = $request->input('miktar'); 
+
+        $bak['bakiye'] += $girilendeger; 
+
+        Kullanicilar::where('kullanici_id', '=', session('kullanici_id'))->update(['bakiye' => $bak['bakiye']]);
+
+        return redirect()->back()->with('success', 'Bakiye yükleme işlemi başarılı.');
+    }
+
     public function arama(Request $request)
     {
         $q = $request->input('q');
