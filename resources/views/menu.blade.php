@@ -111,6 +111,8 @@
                 
                                 <div class="dropdown-menu position-absolute top-0 start-100" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/profil">Profil</a>
+                                    <a class="dropdown-item" href="/cuzdan">Cüzdan</a>
+                                    <a class="dropdown-item" href="/siparis">Siparişlerim</a>
                                     <a class="dropdown-item" href="/cikisyap">Çıkış Yap</a>
                                 </div>
                         @else

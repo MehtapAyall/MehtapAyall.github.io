@@ -15,7 +15,7 @@
         <div class="row justify-content-center" id="profile_view">
             <div class="col-md-8">
                 <div class="card">
-                {{ dd($kullaniciBilgi) }}
+                    {{ dd($kullaniciBilgi) }}
                     @foreach ($kullaniciBilgi as $bilgi )
                         
                     

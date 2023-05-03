@@ -81,6 +81,10 @@ Route::get('/profil', function () {
     return view('profil');
 });
 
+Route::get('/cuzdan', function () {
+    return view('cuzdan');
+});
+
 Route::get('/',[App\Http\Controllers\Verialma::class,'listele']);
 Route::post('/kisikayit',[App\Http\Controllers\Verialma::class,'kaydet']);
 Route::get('/pamuksal',[App\Http\Controllers\Verialma::class,'listele1']);
@@ -101,6 +105,8 @@ Route::get('/profil',[App\Http\Controllers\Verialma::class,'kullaniciBilgi']);
 
 Route::get('/arama',[App\Http\Controllers\Verialma::class,'arama'])->name('arama');
 
+Route::get('/cuzdan',[App\Http\Controllers\Verialma::class,'bakiyeGoster']);
+Route::post('/cuzdan',[App\Http\Controllers\Verialma::class,'paraYukle'])->name('paraYukle');
 
 
 

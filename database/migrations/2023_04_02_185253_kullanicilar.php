@@ -19,6 +19,7 @@ return new class extends Migration
             $table-> string('telefon');
             $table-> string('sifre');
             $table-> string('adres');
+            $table->decimal('bakiye', 10, 2)->default(0.00);
             $table->timestamps();
         });
     }
