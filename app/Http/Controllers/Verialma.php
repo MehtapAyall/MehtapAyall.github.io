@@ -39,19 +39,24 @@ class Verialma extends Controller
             'sifre' => 'required',
         ]);
 
-        $user = DB::table('Kullanicilar')->where('e_posta', $validatedData['e_posta'])->first();
-
-        if (!$user) {
-            return redirect()->back()->with('error', 'Kullanıcı adı veya şifre yanlış.');
+        if($request->input('e_posta')=="admin@admin.com" && $request->input('sifre')=="1234")
+        {
+            return view('adminanasayfa');
         }
+        else{
+            $user = DB::table('Kullanicilar')->where('e_posta', $validatedData['e_posta'])->first();
+            if (!$user) {
+                return redirect()->back()->with('error', 'Kullanıcı adı veya şifre yanlış.');
+            }
 
-        if (Hash::check($validatedData['sifre'], $user->sifre)) {
-            session(['e_posta' => $user->e_posta, 'sifre' => $user->sifre, 'adi' => $user->adi, 'soyadi' => $user->soyadi]);
-            return view('anasayfa');
-        }
-        else {
+            if (Hash::check($validatedData['sifre'], $user->sifre)) {
+                session(['e_posta' => $user->e_posta, 'sifre' => $user->sifre, 'adi' => $user->adi, 'soyadi' => $user->soyadi]);
+                return view('anasayfa');
+            }
+            else {
 
-            return redirect()->back()->with('error', 'Kullanıcı adı veya şifre yanlış.');
+                return redirect()->back()->with('error', 'Kullanıcı adı veya şifre yanlış.');
+            }
         }
     }
 
@@ -66,7 +71,8 @@ class Verialma extends Controller
         $girilendeger = $request->input('miktar'); 
     
         $bakiye->bakiye += $girilendeger;
-        $bakiye->save();
+        
+        Kullanicilar::where('e_posta', '=', session('e_posta'))->update(['bakiye' => DB::raw('bakiye + ' . $girilendeger)]);
     
         return redirect()->back()->with('success', 'Bakiye yükleme işlemi başarılı.');
     }

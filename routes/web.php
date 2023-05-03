@@ -85,6 +85,10 @@ Route::get('/cuzdan', function () {
     return view('cuzdan');
 });
 
+Route::get('/adminanasayfa', function () {
+    return view('adminanasayfa');
+});
+
 Route::get('/',[App\Http\Controllers\Verialma::class,'listele']);
 Route::post('/kisikayit',[App\Http\Controllers\Verialma::class,'kaydet']);
 Route::get('/pamuksal',[App\Http\Controllers\Verialma::class,'listele1']);
