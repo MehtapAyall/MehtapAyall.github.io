@@ -89,6 +89,10 @@ Route::get('/adminanasayfa', function () {
     return view('adminanasayfa');
 });
 
+Route::get('/urunler', function () {
+    return view('adminurunler');
+});
+
 Route::get('/',[App\Http\Controllers\Verialma::class,'listele']);
 Route::post('/kisikayit',[App\Http\Controllers\Verialma::class,'kaydet']);
 Route::get('/pamuksal',[App\Http\Controllers\Verialma::class,'listele1']);
@@ -111,6 +115,13 @@ Route::get('/arama',[App\Http\Controllers\Verialma::class,'arama'])->name('arama
 
 Route::get('/cuzdan',[App\Http\Controllers\Verialma::class,'bakiyeGoster']);
 Route::post('/cuzdan',[App\Http\Controllers\Verialma::class,'paraYukle'])->name('paraYukle');
+
+Route::get('/urunler',[App\Http\Controllers\adminIslemleri::class,'urunler']);
+
+Route::post('/urunler/{id}', [App\Http\Controllers\adminIslemleri::class, 'urunSil'])->name('urunSil');
+
+
+
 
 
 
