@@ -43,6 +43,9 @@
                             <a class="nav-link" href="/urunler">Ürünler</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="/urunekle">Ürün Ekle</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="cikisyap">Çıkış Yap</a>
                         </li>
                         </ul>

@@ -122,9 +122,9 @@ Route::post('/cuzdan',[App\Http\Controllers\Verialma::class,'paraYukle'])->name(
 
 Route::get('/urunler',[App\Http\Controllers\adminIslemleri::class,'urunler']);
 
-Route::post('/urunler/{urun_id}', [App\Http\Controllers\adminIslemleri::class, 'urunSil'])->name('urunSil');
+Route::get('/home-urunler/{urun_id}', [App\Http\Controllers\adminIslemleri::class, 'urunSil'])->name('urunSil');
 
-Route::put('/urunler/{urun_id}', [App\Http\Controllers\adminIslemleri::class,'urunGuncelle'])->name('urunGuncelle');
+Route::get('/urunler/{urun_id}', [App\Http\Controllers\adminIslemleri::class,'urunGuncelle'])->name('urunGuncelle');
 Route::post('/sifredegis',[App\Http\Controllers\Verialma::class,'degis'])->name('sifredegis');
 
 

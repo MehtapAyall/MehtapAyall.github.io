@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Urunler;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
+
 
 class adminIslemleri extends Controller
 {
@@ -24,14 +26,16 @@ class adminIslemleri extends Controller
 
     public function urunGuncelle(Request $request, $urun_id)
     {
-        $urun = Urunler::find($urun_id);
-        $urun->urun_adi = $request->input('urun_adi');
-        $urun->urun_katagori = $request->input('urun_katagori');
-        $urun->urun_aciklama = $request->input('urun_aciklama');
-        $urun->urun_fiyati = $request->input('urun_fiyati');
-        $urun->urun_stok_miktari = $request->input('urun_stok_miktari');
         
-        $urun->save();
+
+        DB::table('urunler')->where('urun_id', $urun_id)->update([
+        'urun_adi' => $request->input('urun_adi'),
+        'urun_katagori' => $request->input('urun_katagori'),
+        'urun_aciklama' => $request->input('urun_aciklama'),
+        'urun_fiyati' => $request->input('urun_fiyati'),
+        'urun_stok_miktari' => $request->input('urun_stok_miktari')
+    ]);
+       
     
         return redirect()->back()->with('success', 'Ürün başarıyla güncellendi.');
     }
