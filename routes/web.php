@@ -97,6 +97,10 @@ Route::get('/sifredegis', function () {
     return view('sifredegis');
 });
 
+Route::get('/urunekle', function () {
+    return view('adminurunekle');
+});
+
 Route::get('/',[App\Http\Controllers\Verialma::class,'listele']);
 Route::post('/kisikayit',[App\Http\Controllers\Verialma::class,'kaydet']);
 Route::get('/pamuksal',[App\Http\Controllers\Verialma::class,'listele1']);
@@ -126,10 +130,5 @@ Route::get('/home-urunler/{urun_id}', [App\Http\Controllers\adminIslemleri::clas
 
 Route::get('/urunler/{urun_id}', [App\Http\Controllers\adminIslemleri::class,'urunGuncelle'])->name('urunGuncelle');
 Route::post('/sifredegis',[App\Http\Controllers\Verialma::class,'degis'])->name('sifredegis');
-
-
-
-
-
-
+Route::post('/urunEkle',[App\Http\Controllers\adminIslemleri::class,'urunEkle'])->name('urunEkle');
 

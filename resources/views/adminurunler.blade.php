@@ -28,7 +28,7 @@
                 <?php foreach($urunler as $urun) { ?>
                     <tr>
                         <form action="<?php echo route('urunGuncelle', $urun->urun_id); ?>" method="GET">
-                            <td><img src="urunRes/<?php echo $urun->urun_resmi; ?>.jpg" class="card-img-top" alt="resim" style="max-width: 100px;"></td>
+                            <td><img src="urunRes/<?php echo $urun->urun_resmi; ?>" class="card-img-top" alt="resim" style="max-width: 100px;"></td>
                             <td><input type="text" name="urun_adi" value="<?php echo $urun->urun_adi; ?>"></td>
                             <td><input type="text" name="urun_katagori" value="<?php echo $urun->urun_katagori; ?>"></td>
                             <td><input type="text" name="urun_aciklama" value="<?php echo $urun->urun_aciklama; ?>"></td>

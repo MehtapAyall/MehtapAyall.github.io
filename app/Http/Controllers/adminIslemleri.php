@@ -40,4 +40,25 @@ class adminIslemleri extends Controller
         return redirect()->back()->with('success', 'Ürün başarıyla güncellendi.');
     }
 
+    public function urunEkle(Request $req){
+        
+        $urun = new Urunler();
+        $urun->urun_adi=$req->urun_adi;
+        $urun->urun_katagori=$req->urun_katagori;
+        $urun->urun_aciklama=$req->urun_aciklama;
+        $urun->urun_fiyati=$req->urun_fiyati;
+        $urun->urun_stok_miktari=$req->urun_stok_miktari;
+
+        if($req->hasfile('image'))
+        {
+            $file = $req->file('image');
+            $extenstion = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extenstion;
+            $file->move('urunRes/', $filename);
+            $urun->urun_resmi = $filename;
+        }
+        $urun->save();
+        return redirect()->back()->with('success', 'Ürün başarıyla eklendi.');
+    }
+
 }
