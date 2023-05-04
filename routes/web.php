@@ -26,7 +26,7 @@ Route::get('/kayit', function () {
 })->name('kayit');
 
 Route::get('/sifremiUnuttum', function () {
-    return view('kayit');
+    return view('sifremiUnuttum');
 })->name('sifremiUnuttum');
 
 Route::get('/aksesuarlar', function () {
@@ -93,6 +93,10 @@ Route::get('/urunler', function () {
     return view('adminurunler');
 });
 
+Route::get('/sifredegis', function () {
+    return view('sifredegis');
+});
+
 Route::get('/',[App\Http\Controllers\Verialma::class,'listele']);
 Route::post('/kisikayit',[App\Http\Controllers\Verialma::class,'kaydet']);
 Route::get('/pamuksal',[App\Http\Controllers\Verialma::class,'listele1']);
@@ -118,7 +122,11 @@ Route::post('/cuzdan',[App\Http\Controllers\Verialma::class,'paraYukle'])->name(
 
 Route::get('/urunler',[App\Http\Controllers\adminIslemleri::class,'urunler']);
 
-Route::post('/urunler/{id}', [App\Http\Controllers\adminIslemleri::class, 'urunSil'])->name('urunSil');
+Route::post('/urunler/{urun_id}', [App\Http\Controllers\adminIslemleri::class, 'urunSil'])->name('urunSil');
+
+Route::put('/urunler/{urun_id}', [App\Http\Controllers\adminIslemleri::class,'urunGuncelle'])->name('urunGuncelle');
+Route::post('/sifredegis',[App\Http\Controllers\Verialma::class,'degis'])->name('sifredegis');
+
 
 
 

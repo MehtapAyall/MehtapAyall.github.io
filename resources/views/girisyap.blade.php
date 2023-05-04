@@ -51,7 +51,7 @@
                     </button>
 
                     @if (Route::has('sifremiUnuttum'))
-                        <a class="btn btn-link" href="">
+                        <a class="btn btn-link" href="/sifremiUnuttum">
                             {{ __('Şifremi Unuttum') }}
                         </a>
                     @endif

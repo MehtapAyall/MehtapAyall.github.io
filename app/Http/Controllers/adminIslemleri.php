@@ -14,11 +14,26 @@ class adminIslemleri extends Controller
         return view('adminurunler',['urunler' => $urunler]);
     }
 
-    public function urunSil($id)
+    public function urunSil($urun_id)
     {
-        $urun = Urunler::find($id);
-        $urun->delete();
+        
+        $urun = DB::table("Urunler")->where('urun_id','=',$urun_id)->delete();
+
         return redirect()->back()->with('success', 'Ürün silme işlemi başarılı.');
+    }
+
+    public function urunGuncelle(Request $request, $urun_id)
+    {
+        $urun = Urunler::find($urun_id);
+        $urun->urun_adi = $request->input('urun_adi');
+        $urun->urun_katagori = $request->input('urun_katagori');
+        $urun->urun_aciklama = $request->input('urun_aciklama');
+        $urun->urun_fiyati = $request->input('urun_fiyati');
+        $urun->urun_stok_miktari = $request->input('urun_stok_miktari');
+        
+        $urun->save();
+    
+        return redirect()->back()->with('success', 'Ürün başarıyla güncellendi.');
     }
 
 }

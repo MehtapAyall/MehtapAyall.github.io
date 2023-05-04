@@ -55,11 +55,7 @@
                         </div>
 
                     @endforeach
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6">
-                                <a href="" class="btn btn-secondary">{{ __('Geri') }}</a>
-                            </div>
-                           
+                        <div class="form-group row mb-0">                           
                             <div class="col-md-6">
                                 <button class="btn btn-primary" onclick="showForm()">Bilgilerimi Düzenle</button>
                             </div>

@@ -113,6 +113,7 @@
                                     <a class="dropdown-item" href="/profil">Profil</a>
                                     <a class="dropdown-item" href="/cuzdan">Cüzdan</a>
                                     <a class="dropdown-item" href="/siparis">Siparişlerim</a>
+                                    <a class="dropdown-item" href="/sifredegis">Şifre Değiştir</a>
                                     <a class="dropdown-item" href="/cikisyap">Çıkış Yap</a>
                                 </div>
                         @else

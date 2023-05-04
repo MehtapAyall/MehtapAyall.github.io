@@ -86,6 +86,25 @@ class Verialma extends Controller
         return view('arama',  ['urunler' => $urunler]);
     }
 
+    public function degis(Request $request)
+    {
+        $request->validate([
+            'sifree' => 'required',
+            'sifre' => 'required',
+            'sifret' => 'required',
+        ]);
+
+        $kullanici = Kullanicilar::select('sifre')->where('e_posta', '=', session('e_posta'))->first();
+
+        if (Hash::check($request->sifree, $kullanici->sifre)) {
+            $kullanici->sifre = Hash::make($request->sifre);
+            $kullanici->save();
+            return redirect()->back()->with('success', 'Şifre değiştirildi');
+        } else {
+            return back()->withErrors(['sifre' => 'Şifreler eşleşmiyor']);
+        }
+    }
+
     public function cikisYap()
     {
         session()->forget('e_posta');
