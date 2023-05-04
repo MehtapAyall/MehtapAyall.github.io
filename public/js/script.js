@@ -45,13 +45,7 @@ class UI{
                 </button>
             </div>
         </div>
-        <div class="total d-flex mt-3">
-            <div class="total-title">Toplam : </div>
-            <span class="total-value">${shopping.price}</span>
-        </div>
-        <div class="">
-            <button class="btn-al btn-outline-danger p-2 rounded-pill" type="button"> Alışverişi Tamamla </button>
-        </div>
+        
         `
         cartList.appendChild(listItem);
     }
@@ -63,6 +57,7 @@ class UI{
             btnRemove[i].addEventListener("click",function(){
                 this.closest(".list-item").remove();
                 self.cartCount();
+                self.updateTotal();
             })
         }
     }
@@ -80,6 +75,7 @@ class UI{
                     quantity[i].textContent--;
                     total[i].textContent = price[i].textContent * quantity[i].textContent;
                     self.cartCount();
+                    self.updateTotal();
                 }
             })
         }
@@ -88,6 +84,7 @@ class UI{
                 quantity[i].textContent++;
                 total[i].textContent = price[i].textContent * quantity[i].textContent;
                 self.cartCount();
+                self.updateTotal();
             })
         }
     }
@@ -97,37 +94,45 @@ class UI{
         let itemCount = document.getElementById("item-count");
         itemCount.innerHTML = cartListItem.length;
     }
+    
 
     cartToggle(){
-        btnCart.addEventListener("click",function(){
-            cartList.classList.toggle("d-none");
-        })
+    btnCart.addEventListener("click", function() {
+        cartList.classList.toggle("d-none");
+    })
+
+}
+
+
+    updateTotal(){
+        let total = 0;
+        let cartListItem = cartList.getElementsByClassName("list-item");
+        for(let i = 0; i < cartListItem.length; i++){
+            let price = parseFloat(cartListItem[i].getElementsByClassName("price")[0].textContent.replace("₺",""));
+            let quantity = parseInt(cartListItem[i].getElementsByClassName("quantity")[0].textContent);
+            total += price * quantity;
+        }
+        cardTotal.textContent = `${total.toFixed(2)}₺`;
     }
 }
 
-for(let i=0; i<btnEkle.length; i++){
-    btnEkle[i].addEventListener("click", function(e){
-        let title = card[i].querySelector(".card-title").textContent;
-        let price = card[i].querySelector(".price").textContent;
-        let image = card[i].querySelector(".card-img-top").src;
-        btnEkle[i].classList.add("disabled");
-        btnEkle[i].textContent = "Eklendi";
 
+    for(let i=0;i<btnEkle.length;i++){
+    btnEkle[i].addEventListener("click",function(){
+        let image = card[i].getElementsByTagName("img")[0].src;
+        let title = card[i].getElementsByClassName("card-title")[0].textContent;
+        let price = card[i].getElementsByClassName("price")[0].textContent;
         let shopping = new Shopping(image,title,price);
         let ui = new UI();
-
         ui.addToCart(shopping);
-        ui.removeCard();
-        ui.updateQuantity();
         ui.cartCount();
-
-        e.preventDefault();
+        ui.cartToggle();
+        ui.updateQuantity();
+        ui.removeCard();
+        ui.updateTotal();
     })
+
 }
-
-
-document.addEventListener("DOMContentLoaded",()=>{
-    let ui = new UI();
-
-    ui.cartToggle();
-})
+btnCart.addEventListener("click", function() {
+    cartList.classList.toggle("open");
+  });

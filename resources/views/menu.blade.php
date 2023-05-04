@@ -98,7 +98,11 @@
                         </button>
                         <div class="shopping-cart-list bg d-none" style="width: 30rem;">
                             <b class="fs-5 text-white my-3"> Sepet </b>
-                            
+                            <div class="total d-flex mt-3">
+                                <div class="total-title">Toplam : </div>
+                                    <span class="total-value">${shopping.price}</span>
+                                    <button class="btn btn-danger float-right">Alışverişi Tamamla</button>
+                            </div>
                         </div>
                     </div>
 

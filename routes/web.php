@@ -101,6 +101,10 @@ Route::get('/urunekle', function () {
     return view('adminurunekle');
 });
 
+Route::get('/urundetay', function () {
+    return view('urundetay');
+});
+
 Route::get('/',[App\Http\Controllers\Verialma::class,'listele']);
 Route::post('/kisikayit',[App\Http\Controllers\Verialma::class,'kaydet']);
 Route::get('/pamuksal',[App\Http\Controllers\Verialma::class,'listele1']);
