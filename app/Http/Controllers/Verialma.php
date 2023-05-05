@@ -113,91 +113,91 @@ class Verialma extends Controller
 
     public function listele (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->get();
         
         return view('anasayfa',compact('urunler'));
     }
 
     public function listele1 (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'pamuk şal')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'pamuk şal')->get();
         
         return view('pamuksal',compact('urunler'));
     }
 
     public function listele2 (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'aksesuar')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'aksesuar')->get();
         
         return view('aksesuarlar',compact('urunler'));
     }
 
     public function listele3 (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'bandana bone')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'bandana bone')->get();
         
         return view('bandanabone',compact('urunler'));
     }
 
     public function listele4 (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'boru bone')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'boru bone')->get();
         
         return view('borubone',compact('urunler'));
     }
 
     public function listele5 (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'desenli eşarp')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'desenli eşarp')->get();
         
         return view('desenliesarp',compact('urunler'));
     }
 
     public function listele6 (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'desenli şal')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'desenli şal')->get();
         
         return view('desenlisal',compact('urunler'));
     }
 
     public function listele7 (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'ipek şal')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'ipek şal')->get();
         
         return view('ipeksal',compact('urunler'));
     }
 
     public function listele8 (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'kaşmir eşarp')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'kaşmir eşarp')->get();
         
         return view('kasmiresarp',compact('urunler'));
     }
 
     public function listele9 (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'kraşe eşarp')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'kraşe eşarp')->get();
         
         return view('pamukesarp',compact('urunler'));
     }
 
     public function listele10 (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'penye şal')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'penye şal')->get();
         
         return view('penyesal',compact('urunler'));
     }
 
     public function listele11 (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'tesettür bone')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'tesettür bone')->get();
         
         return view('tesetturbone',compact('urunler'));
     }
 
     public function listele12 (){
 
-        $urunler = Urunler::select('urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'topuz bone')->get();
+        $urunler = Urunler::select('urun_id','urun_adi','urun_fiyati','urun_resmi')->where('urun_katagori', 'topuz bone')->get();
         
         return view('topuzbonesi',compact('urunler'));
     }

@@ -101,9 +101,9 @@ Route::get('/urunekle', function () {
     return view('adminurunekle');
 });
 
-Route::get('/urundetay', function () {
+Route::get('/urundetay/{urun_id}', function ($urun_id) {
     return view('urundetay');
-});
+})->name('urundetay');
 
 Route::get('/',[App\Http\Controllers\Verialma::class,'listele']);
 Route::post('/kisikayit',[App\Http\Controllers\Verialma::class,'kaydet']);

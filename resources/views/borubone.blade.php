@@ -16,7 +16,9 @@
             @foreach($urunler as $urun)
                 <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
-                    <img src="urunRes/{{ $urun->urun_resmi }}" class="card-img-top" alt="resim">
+                    <a href="{{ route('urundetay', ['urun_id' => $urun->urun_id]) }}">
+                        <img src="urunRes/{{ $urun->urun_resmi }}" class="card-img-top" alt="resim">
+                    </a>
                     <div class="card-body">
                     <h5 class="card-title">{{ $urun->urun_adi }}</h5>
                     <div class="d-flex justify-content-between">
