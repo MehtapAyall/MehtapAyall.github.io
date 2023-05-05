@@ -17,6 +17,21 @@ class Verialma extends Controller
         
         return view('profil', ['kullaniciBilgi' => $kullaniciBilgi]);
     }
+
+    public function guncelle(Request $request, $id)
+    {
+        
+        $kullanici = Kullanicilar::find($id);
+        $kullanici->adi = $request->input('ad');
+        $kullanici->soyadi = $request->input('soyad');
+        $kullanici->e_posta = $request->input('email');
+        $kullanici->telefon = $request->input('telefon');
+        $kullanici->adres = $request->input('adres');
+
+        $kullanici->save();
+
+        return redirect('/cikisyap')->with('success', 'Profil bilgileriniz başarıyla güncellendi.');
+    }
     
     public function kaydet(Request $req){
         $kullanici = new Kullanicilar();

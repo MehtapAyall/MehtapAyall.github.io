@@ -122,6 +122,7 @@ Route::get('/penyesal',[App\Http\Controllers\Verialma::class,'listele10']);
 Route::get('/tesetturbone',[App\Http\Controllers\Verialma::class,'listele11']);
 Route::get('/topuzbonesi',[App\Http\Controllers\Verialma::class,'listele12']);
 Route::get('/profil',[App\Http\Controllers\Verialma::class,'kullaniciBilgi']);
+Route::post('/profil/guncelle/{id}', [App\Http\Controllers\Verialma::class,'guncelle'])->name('guncelle');
 
 Route::get('/arama',[App\Http\Controllers\Verialma::class,'arama'])->name('arama');
 
